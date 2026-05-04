@@ -1,26 +1,273 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primary Colors - Little & Lovely inspired retail theme */
+  --color-primary: #E83E82;
+  --color-primary-dark: #C72566;
+  --color-primary-light: #F9A8C7;
+  --color-secondary: #1F1A1D;
+  --color-accent: #8B5CF6;
+  
+  /* Background Colors */
+  --color-background: #FFF8FA;
+  --color-bg: #FFF8FA;
+  --color-surface: #FFFFFF;
+  --color-surface-elevated: #FFFFFF;
+  
+  /* Text Colors */
+  --color-text-primary: #1A1A1A;
+  --color-text-secondary: #666666;
+  --color-text-muted: #999999;
+  
+  /* Status Colors */
+  --color-success: #43A047;
+  --color-error: #E53935;
+  --color-warning: #FFA000;
+  --color-info: #1976D2;
+  
+  /* Border Colors */
+  --color-border: #F4DCE6;
+  --color-border-light: #FCEAF1;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--color-primary);
+  --color-primary-dark: var(--color-primary-dark);
+  --color-primary-light: var(--color-primary-light);
+  --color-secondary: var(--color-secondary);
+  --color-accent: var(--color-accent);
+  --color-background: var(--color-background);
+  --color-surface: var(--color-surface);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-muted: var(--color-text-muted);
+  --color-success: var(--color-success);
+  --color-error: var(--color-error);
+  --color-warning: var(--color-warning);
+  --color-info: var(--color-info);
+  --color-border: var(--color-border);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: 'Poppins', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-border-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-text-muted);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-secondary);
+}
+
+/* Button styles */
+.btn-primary {
+  @apply bg-[var(--color-primary)] text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200;
+}
+
+.btn-primary:hover {
+  @apply bg-[var(--color-primary-dark)] shadow-lg;
+}
+
+.btn-secondary {
+  @apply bg-[var(--color-secondary)] text-white px-6 py-3 rounded-lg font-medium transition-all duration-200;
+}
+
+.btn-secondary:hover {
+  @apply opacity-90;
+}
+
+.btn-outline {
+  @apply border-2 border-[var(--color-primary)] text-[var(--color-primary)] px-6 py-3 rounded-lg font-medium transition-all duration-200;
+}
+
+.btn-outline:hover {
+  @apply bg-[var(--color-primary)] text-white;
+}
+
+/* Card styles */
+.card {
+  @apply bg-white rounded-lg shadow-sm border border-[var(--color-border-light)] overflow-hidden transition-all duration-200;
+}
+
+.card:hover {
+  @apply shadow-md;
+}
+
+/* Input styles */
+.input {
+  @apply w-full px-4 py-3 border border-[var(--color-border)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent transition-all duration-200;
+}
+
+.input::placeholder {
+  @apply text-[var(--color-text-muted)];
+}
+
+/* Badge styles */
+.badge {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.badge-success {
+  @apply bg-green-100 text-green-800;
+}
+
+.badge-error {
+  @apply bg-red-100 text-red-800;
+}
+
+.badge-warning {
+  @apply bg-yellow-100 text-yellow-800;
+}
+
+.badge-info {
+  @apply bg-blue-100 text-blue-800;
+}
+
+/* Container */
+.container-custom {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-slideIn {
+  animation: slideIn 0.5s ease-out forwards;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Stagger animations */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+/* Loading skeleton */
+.skeleton {
+  @apply bg-gray-200 rounded animate-pulse;
+}
+
+/* Product image placeholder */
+.product-image-placeholder {
+  @apply bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center;
+}
+
+/* Warm gradient for special elements */
+.warm-gradient {
+  background: linear-gradient(135deg, #ffe7ef 0%, #fff7fb 45%, #f1ecff 100%);
+}
+
+/* Glass effect */
+.glass {
+  @apply bg-white/80 backdrop-blur-md;
+}
+
+/* Focus visible */
+:focus-visible {
+  @apply outline-none ring-2 ring-[var(--color-primary)] ring-offset-2;
+}
+
+/* Selection */
+::selection {
+  background: var(--color-primary-light);
+  color: var(--color-secondary);
+}
+
+/* Support + order design tokens from approved reference */
+.gradient-card {
+  background: linear-gradient(135deg, #fff1f6, #ffffff);
+}
+
+.pink-gradient {
+  background: linear-gradient(135deg, #ff4d94, #ff8ab5);
+}
+
+.shadow-soft {
+  box-shadow: 0 10px 30px rgba(255, 105, 160, 0.08);
+}
+
+.status-active {
+  background: #ffe1ee;
+  color: #ff2f7d;
+}
+
+.status-success {
+  background: #e7fff0;
+  color: #16a34a;
+}
+
+.status-warning {
+  background: #fff4db;
+  color: #f59e0b;
 }

@@ -4,11 +4,22 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:storefront": "SERVICE_MODE=storefront next dev",
+    "dev:admin": "SERVICE_MODE=admin next dev",
+    "dev:api": "SERVICE_MODE=api next dev",
+    "dev:integrations": "SERVICE_MODE=integrations next dev",
+    "dev:profile": "NODE_ENV=development next dev",
+    "dev:profile:log": "mkdir -p logs && NODE_ENV=development next dev 2>&1 | tee -a logs/dev.log",
+    "dev:storefront:log": "mkdir -p logs && SERVICE_MODE=storefront next dev 2>&1 | tee -a logs/storefront.log",
+    "dev:admin:log": "mkdir -p logs && SERVICE_MODE=admin next dev 2>&1 | tee -a logs/admin.log",
+    "dev:api:log": "mkdir -p logs && SERVICE_MODE=api next dev 2>&1 | tee -a logs/api.log",
+    "dev:integrations:log": "mkdir -p logs && SERVICE_MODE=integrations next dev 2>&1 | tee -a logs/integrations.log",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
+    "mysql2": "^3.22.2",
     "next": "16.2.4",
     "react": "19.2.4",
     "react-dom": "19.2.4"
@@ -20,6 +31,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
+    "eslint-plugin-react": "^7.37.4",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
