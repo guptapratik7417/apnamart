@@ -82,11 +82,13 @@ export default function SupportTicketDetail({
   const [message, setMessage] = useState("");
   const [visibility, setVisibility] = useState<SupportReplyVisibility>("public");
   const [mediaFiles, setMediaFiles] = useState<File[]>([]);
+  const [replyError, setReplyError] = useState("");
   const [busy, setBusy] = useState(false);
 
   async function sendReply() {
     const body = message.trim();
     if (!body) return;
+    setReplyError("");
 
     const requestBody = new FormData();
     requestBody.set("message", body);
@@ -107,7 +109,7 @@ export default function SupportTicketDetail({
 
     if (!response.ok) {
       const payload = (await response.json()) as { error?: string };
-      alert(payload.error || "Reply failed");
+      setReplyError(payload.error || "Reply failed");
       return;
     }
 
@@ -296,16 +298,22 @@ export default function SupportTicketDetail({
               <input
                 className="input"
                 type="file"
-                accept="image/*,video/mp4,video/webm,video/quicktime"
+                accept="image/*,video/*"
                 multiple
-                onChange={(event) =>
-                  setMediaFiles(Array.from(event.target.files || []).slice(0, 3))
-                }
+                onChange={(event) => {
+                  setReplyError("");
+                  setMediaFiles(Array.from(event.target.files || []).slice(0, 3));
+                }}
               />
               <span className="block text-xs text-[var(--color-text-secondary)]">
                 Up to 3 files. Images or videos, 10MB each.
               </span>
             </label>
+            {replyError && (
+              <div className="mt-3 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+                {replyError}
+              </div>
+            )}
           </div>
         </section>
 

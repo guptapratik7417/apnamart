@@ -202,7 +202,7 @@ export default function ReviewsSection({
               </label>
               <input
                 type="file"
-                accept="image/*,video/mp4,video/webm,video/quicktime"
+                accept="image/*,video/*"
                 multiple
                 className="input w-full"
                 onChange={(event) =>

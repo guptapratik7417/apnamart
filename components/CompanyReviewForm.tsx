@@ -97,7 +97,7 @@ export default function CompanyReviewForm({
             </label>
             <input
               type="file"
-              accept="image/*,video/mp4,video/webm,video/quicktime"
+              accept="image/*,video/*"
               multiple
               className="input"
               onChange={(event) =>

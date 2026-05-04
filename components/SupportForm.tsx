@@ -177,7 +177,7 @@ export default function SupportForm({
         <input
           className="input"
           type="file"
-          accept="image/*,video/mp4,video/webm,video/quicktime"
+          accept="image/*,video/*"
           multiple
           onChange={(event) =>
             setMediaFiles(Array.from(event.target.files || []).slice(0, 3))
